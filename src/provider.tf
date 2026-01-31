@@ -1,0 +1,32 @@
+# provider.tf
+terraform {
+  required_providers {
+    #kubernetes = {
+    #  source  = "hashicorp/kubernetes"
+    #  version = "~> 3.0.1"
+    #}
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 3.1.1"
+    }
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.2.4"
+    }
+    time = {
+      source  = "hashicorp/time"
+      version = "~> 0.13.1"
+    }
+  }
+}
+
+#provider "kubernetes" {
+#  host        = var.machine_ip
+#  config_path = "~/.kube/config-microk8s"
+#}
+
+provider "helm" {
+  kubernetes = {
+    host = var.machine_ip
+  }
+}

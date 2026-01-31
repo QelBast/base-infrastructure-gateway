@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sudo -n apt update -y
+sudo -n apt install -y snapd
+sudo -n snap install microk8s --classic --channel=1.35/stable
+sudo -n microk8s status --wait-ready
+sudo -n microk8s enable dns helm storage registry ingress
+sudo -n usermod -a -G microk8s ${var.username}
+sudo -n chown -f -R ${var.username} ~/.kube
+sudo -n microk8s config > /home/${var.username}/kubeconfig

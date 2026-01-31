@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+NEW_USER="${username}"
+PUB_KEY="${ssh_public_key}"
+
+id "$NEW_USER" || useradd -m -s /bin/bash "$NEW_USER"
+
+mkdir -p /home/$NEW_USER/.ssh
+echo "$PUB_KEY" > /home/$NEW_USER/.ssh/authorized_keys
+
+chmod 700 /home/$NEW_USER/.ssh
+chmod 600 /home/$NEW_USER/.ssh/authorized_keys
+chown -R $NEW_USER:$NEW_USER /home/$NEW_USER/.ssh

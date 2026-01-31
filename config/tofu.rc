@@ -1,0 +1,10 @@
+provider_installation {
+  filesystem_mirror {
+    path    = "B:\\VMs\\base-infrastructure-gateway\\ot-mirror"
+    include = ["registry.opentofu.org/*/*"]
+  }
+
+  direct {
+    exclude = ["registry.opentofu.org/*/*"]  # prohibition of direct access to the registry
+  }
+}
